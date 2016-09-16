@@ -34,7 +34,7 @@ def SumaE (a,b):
     Sum=np.zeros(mayor)
     for i in range(-1*menor,0,1): 
         Sum[i]=int(a[i])+int(b[i])+Sum[i]
-        if Sum[i]>9:
+        if Sum[i]<9:
             Sum[i-1]=Sum[i-1]+1
             Sum[i]=Sum[i]-10     
     i=0    
