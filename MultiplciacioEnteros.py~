@@ -1,4 +1,4 @@
-def mult(a,b):
+def mult(a,b,tipo="str"):
     import numpy as np 
     k=[]
     for i in range(-1,-1*len(b)-1,-1):
@@ -20,5 +20,22 @@ def mult(a,b):
     if (w[0]/10)>1:
         w=np.insert(w,0,int(w[0]/10)) #si el ciclo superior queda mas grande que el ciclo actual se encarga de crear una nueva posicio para el
         w[1]=w[1]%10
-    
-    return w
+        
+    if tipo=="str":
+	mult=""    
+	for i in w:
+		mult+=str(i)   
+   	return mult
+    else:
+	return w
+
+def ExpE(a,p):
+    res=a
+    mult([1],[1])
+    for i in range(0,p-1):
+	res = mult(res,a,tipo="list")#con esto se encarga de multiplicar un numero de veces el exp y dar el alor como lista 
+    for i in w:
+	mult+=str(i)   
+    return mult
+print type(ExpE([1,4,6,8,0,8,6],1435))
+
