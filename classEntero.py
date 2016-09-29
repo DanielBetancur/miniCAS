@@ -8,8 +8,15 @@ import numpy as np
 class Entero:
     def __init__(self,E):
         ent=[]
-        for i in E:
-            ent.append(int(i))
+        self.isNegativo=E[0]=="-"
+        self.isNegativo=E[0]=="-"
+        if self.isNegativo:
+            for i in range(1,len(E)):
+                ent.append(int(E[i]))
+        else:
+            for i in E:
+                ent.append(int(i))
+
         self.entero=ent
         self.isDecimal=True
         self.isFraccionario=True
@@ -28,14 +35,19 @@ class Entero:
         string+=".0"
         return Fraccionario(string)
     def toString(self):
-        string=""
-        for i in self.entero:
-            string+=str(i)
+        
+        if self.isNegativo:
+            string="-"
+            for i in self.entero:
+                string+=str(i)
+        
+        else:
+            string=""
+            for i in self.entero:
+                string+=str(i)
         return string 
     def SumaE (self, other):
         
-
-    #alguien me ayuda a crear un programa que verifique si es 
         a=self.entero
         b=other.entero
         if len(a)>len(b):
@@ -72,10 +84,10 @@ class Entero:
                 Sum[i]=b[i]
                 i+=1
 
-            string=""
-            for i in Sum:
-                string+=str(i)
-            return string 
+        string=""
+        for i in Sum:
+            string+=str(i)
+        return string 
     def RestaE (self, other):
         #alguien me ayuda a crear un programa que verifique si es 
         a=self.entero
@@ -84,7 +96,7 @@ class Entero:
             menor=len(b)
             mayor=len(a)
                 
-            Sum=np.zeros(mayor)
+            Sum=np.zeros(mayor, dtype=int)
             for i in range(-1,-1*menor-1,-1):
                 Sum[i]=int(a[i])-int(b[i])+Sum[i]
                 if Sum[i]<0:
@@ -110,7 +122,7 @@ class Entero:
                 if len(a)>len(b):
                     Sum[i]=Sum[i]+int(a[i])
             if Sum[0]==0:
-                Sum=delete(Sum,[0])
+                Sum= delete(Sum,[0])
                 Sum[0]=Sum[0]*-1
             else:
                 Sum[0]=Sum[0]*-1
@@ -130,4 +142,16 @@ class Entero:
         string=""
         for i in Sum:
             string+=str(i)
-        return string   
+        return string  
+    def suma(self,v2):
+        if self.isNegativo and v2.isNegativo:
+            a= v2.SumaE(self)
+            b="-"
+            return b+a
+        elif self.isNegativo and not(v2.isNegativo):
+            return v2.RestaE(self)
+        elif not(self.isNegativo) and v2.isNegativo:
+            return self.RestaE(v2)
+        else:
+            return self.SumaE(v2)
+           
